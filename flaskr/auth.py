@@ -28,7 +28,7 @@ def register():
             'SELECT id FROM user WHERE username = ?',
             (username,)
         ).fetchone() is not None:
-            error = 'User {} is already registered.'.format(username)
+            error = 'User {0} is already registered.'.format(username)
         
         if error is None:
             db.execute(
@@ -67,7 +67,7 @@ def login():
     
     return render_template('auth/login.html')
 
-@bp.before_app_first_request
+@bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
 
